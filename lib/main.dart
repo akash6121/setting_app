@@ -52,7 +52,7 @@ class _ScreenSetState extends State<ScreenSet> {
       );
     }
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Padding(padding: EdgeInsets.only(top: 50)),
           Text('Settings',

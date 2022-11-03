@@ -11,9 +11,20 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
+    Widget makeTile(String text,[IconData? icon]){
+      return ListTile(
+        leading: Icon(icon),
+        title: Text(text),
+        contentPadding: EdgeInsets.all(15),
+        tileColor: Colors.black12,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        visualDensity: VisualDensity(vertical: -4),
+        trailing: Icon(Icons.arrow_forward_ios),);
+    }
     return Scaffold(
       appBar: AppBar(backgroundColor: Color(0xFF212121),title: Text('Apple ID'),centerTitle: true,),
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.all(35),
         children: <Widget>[
           Align(
           alignment: FractionalOffset(0.5,0.5),
@@ -29,9 +40,14 @@ class _SettingsState extends State<Settings> {
           ),),
         ),
           SizedBox(height: 10,),
-          Text('Satguru Technologies',style: KTextStyle(30.0),),
-          Text('satgurutechnologies12@gmail.com'),
-
+          Text('Satguru Technologies',style: KTextStyle(30.0),textAlign: TextAlign.center,),
+          Text('satgurutechnologies12@gmail.com',textAlign: TextAlign.center,),
+          SizedBox(height: 20,),
+          makeTile('Name,Phone Numbers,Email'),
+          makeTile('Password & Security'),
+          makeTile('Payment & Shipping'),
+          makeTile('Subscription'),
+          makeTile('bjcsb',Icons.cabin),
     ]
       ),
     );
