@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tableview_flut/constant.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -17,76 +18,101 @@ class _SettingsState extends State<Settings> {
     super.initState();
     Scroll.addListener(() {
       if(Scroll.position.pixels >= Scroll.position.maxScrollExtent){
-        setState(() {
-          flag=1;
-        });
-        print('reach');
+          Future.delayed(const Duration(seconds: 2), () {
+            setState(() {
+              flag=1;
+            }); // Prints after 1 second.
+          });
       }
     });
   }
+  @override
   void dispose(){
     super.dispose();
     Scroll.dispose();
-  }// await(future.delay(milisecond:300);
+  }
+  @override
   Widget build(BuildContext context) {
+    Widget addLine(double val){
+      return Divider(height: 0, thickness: 1, endIndent: 10, indent: val,);
+    }
     Widget makeTile(String text,[IconData? icon]){
       return ListTile(
         leading: (icon!=null) ? Icon(icon):Text(text),
         title: (icon!=null) ? Text(text):null,
-        contentPadding: EdgeInsets.all(15),
-        tileColor: Colors.black12,
+        contentPadding: const EdgeInsets.all(15),
+        tileColor: Colors.grey[850],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        visualDensity: VisualDensity(vertical: -4),
-        trailing: Icon(Icons.arrow_forward_ios),);
+        visualDensity: const VisualDensity(vertical: -4),
+        trailing: const Icon(Icons.arrow_forward_ios),);
     }
     return Scaffold(
-      appBar: AppBar(backgroundColor: Color(0xFF212121),title: Text('Apple ID'),centerTitle: true,),
+      appBar: AppBar(backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,),
       body: ListView(
         controller: Scroll,
-        padding: EdgeInsets.all(35),
+        padding: const EdgeInsets.all(15),
         children: <Widget>[
           Align(
-          alignment: FractionalOffset(0.5,0.5),
-          child: CircleAvatar(backgroundImage: AssetImage('assets/cartoon.jpeg'),radius: 50,
+          alignment: const FractionalOffset(0.5,0.5),
+          child: CircleAvatar(backgroundImage: const AssetImage('assets/cartoon.jpeg'),radius: 50,
           child: Align(
-            alignment: FractionalOffset(0.9,0.9),
+            alignment: const FractionalOffset(0.9,0.9),
             child: Container(
               height: 15,
               width: 90,
               color: Colors.black26,
-              child: Text('EDIT',textAlign: TextAlign.center,),
+              child: const Text('EDIT',textAlign: TextAlign.center,),
             ),
           ),),
         ),
-          SizedBox(height: 10,),
-          Text('Satguru Technologies',style: KTextStyle(30.0),textAlign: TextAlign.center,),
-          Text('satgurutechnologies12@gmail.com',textAlign: TextAlign.center,),
-          SizedBox(height: 20,),
+          const SizedBox(height: 10,),
+          Text('Satguru Technologies',style: KTextStyle(30.0),textAlign: TextAlign.center,maxLines: 2,),
+          const Text('satgurutechnologies12@gmail.com',textAlign: TextAlign.center,),
+          const SizedBox(height: 20,),
           makeTile('Name,Phone Numbers,Email'),
+          addLine(7),
           makeTile('Password & Security'),
+          addLine(7),
           makeTile('Payment & Shipping'),
+          addLine(7),
           makeTile('Subscription'),
-          SizedBox(height: 40,),
+          const SizedBox(height: 40,),
           makeTile('iCloud',Icons.cloud),
+          addLine(45),
           makeTile('Media & Purchases',Icons.media_bluetooth_on),
+          addLine(45),
           makeTile('Find My',Icons.navigation_sharp),
+          addLine(45),
           makeTile('Family Sharing',Icons.people_alt_rounded),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           // Some Code to go here
           //think it
-          (flag==0) ? CircularProgressIndicator() : Column(
+          (flag==0) ? ListTile(
+            title: const SpinKitCircle(
+              color: Colors.grey,
+            ),
+            tileColor: Colors.grey[850],
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ) : Column(
             children: <Widget>[
               makeTile('iPhone SE 2020',Icons.phone_iphone_outlined),
+              addLine(45),
               makeTile('apple\'s iphone',Icons.phone_iphone_outlined),
+              addLine(45),
               makeTile('ipad',Icons.tablet_mac),
+              addLine(45),
               makeTile('iPad',Icons.tablet_mac),
+              addLine(45),
               makeTile('Karanpreet\'s MacBook Pro',Icons.laptop_mac),
+              addLine(45),
               makeTile('Macbook\'s MacBook Pro',Icons.laptop_mac),
+              addLine(45),
               makeTile('Palak\'s MacBook Pro',Icons.laptop_mac),
+              addLine(45),
               makeTile('Mridul\'s MacBook Pro',Icons.laptop_mac),
             ],
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           makeTile('Sign Out',Icons.logout),
     ]
       ),

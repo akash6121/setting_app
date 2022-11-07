@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tableview_flut/constant.dart';
 import 'package:tableview_flut/second.dart';
 void main() {
-  runApp(table_view());
+  runApp(const table_view());
 }
 class table_view extends StatelessWidget {
   const table_view({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class table_view extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Settings App',
       theme: kDarkTheme,
-      home: ScreenSet(),
+      home: const ScreenSet(),
     );
   }
 }
@@ -27,86 +27,90 @@ class ScreenSet extends StatefulWidget {
 class _ScreenSetState extends State<ScreenSet> {
   @override
   Widget build(BuildContext context) {
-    Widget CreateTab(Color colour, IconData icon, String s,double val){
-      return ListTile(
-        leading: ClipRect(
-              child: Container(
-                margin: EdgeInsets.only(left: 20),
-                height: 30,
-                width: 30,
-                color: colour,
-                child: Icon(icon),
+    Widget addLine(){
+      return const Divider(height: 0, thickness: 1, endIndent: 20, indent: 80,);
+    }
+    Widget createTab(Color colour, IconData icon, String s){
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: ListTile(
+          tileColor: Colors.grey[850],
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 37,
+                  width: 37,
+                  color: colour,
+                  child: Icon(icon),
+                ),
               ),
-            ),
-            title: Text(s,style: KTextStyle(18.0),),
-            trailing: Icon(Icons.arrow_forward_ios),
-        );
+              title: Text(s,style: KTextStyle(18.0),),
+              trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+          ),
+      );
     }
     return Scaffold(
       body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context,constraints) {
-            print(constraints.maxWidth);
-            return ListView(
+        child: ListView(
               children: <Widget>[
-                Padding(padding: EdgeInsets.only(top: 50)),
+                const Padding(padding: EdgeInsets.only(top: 50)),
                 Text('Settings', style: KTextStyle(60.0),),
-                SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Settings()),);
+                      MaterialPageRoute(builder: (context) => const Settings()),);
                   },
                   child: Container(
-                    margin: EdgeInsets.all(20),
+                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 40),
                     height: 90,
-                    decoration: BoxDecoration(color: Colors.grey[800],
+                    decoration: BoxDecoration(color: Colors.grey[850],
                         borderRadius: BorderRadius.circular(10)),
                     child: Row(
                       children: <Widget>[
-                        Padding(padding: EdgeInsets.only(left: 15)),
-                        CircleAvatar(backgroundImage: AssetImage(
+                        const Padding(padding: EdgeInsets.only(left: 15)),
+                        const CircleAvatar(backgroundImage: AssetImage(
                             'assets/cartoon.jpeg'), radius: 35,),
-                        Padding(padding: EdgeInsets.only(left: 15)),
-                        Text('Satguru Technologies',
-                          style: constraints.maxWidth<400 ? KTextStyle(17.0) : KTextStyle(22.0),),
-                        Padding(padding: EdgeInsets.only(left: 15)),
-                        Icon(Icons.arrow_forward_ios),
+                        const Padding(padding: EdgeInsets.all(15)),
+                        Expanded(
+                          child: Text('Satguru Technologies',
+                            style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                        ),
+                        const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+                        const Padding(padding: EdgeInsets.only(left: 15))
                       ],
                     ),
                   ),
                 ),
-                CreateTab(
+                createTab(
                     Colors.orangeAccent, Icons.airplanemode_active_outlined,
-                    'Airplane Mode', 140),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(Colors.blueAccent, Icons.wifi, 'Wi-Fi', 212),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth', 174),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(
-                    Colors.green, Icons.cell_tower_outlined, 'Mobile Data',
-                    155),
-                SizedBox(height: 40,),
-                CreateTab(Colors.redAccent, Icons.notifications_active,
-                    'Notifications', 150),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(Colors.red, Icons.volume_up, 'Sounds & Haptics', 110),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(
-                    Color(0xB50202BD), Icons.nightlight_round, 'Focus', 205),
-                Divider(height: 2, thickness: 3, endIndent: 40, indent: 40,),
-                CreateTab(Color(0xB50202BD), Icons.hourglass_bottom_rounded,
-                    'Screen Time', 150),
-                SizedBox(height: 40,),
-                CreateTab(Colors.grey, Icons.settings, 'General', 190),
+                    'Airplane Mode'),
+                addLine(),
+                createTab(Colors.blueAccent, Icons.wifi, 'Wi-Fi'),
+                addLine(),
+                createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth',),
+                addLine(),
+                createTab(
+                    Colors.green, Icons.cell_tower_outlined, 'Mobile Data',),
+                const SizedBox(height: 40,),
+                createTab(Colors.redAccent, Icons.notifications_active,
+                    'Notifications',),
+                addLine(),
+                createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',),
+                addLine(),
+                createTab(
+                    const Color(0xB50202BD), Icons.nightlight_round, 'Focus',),
+                addLine(),
+                createTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
+                    'Screen Time',),
+                const SizedBox(height: 40,),
+                createTab(Colors.grey, Icons.settings, 'General',),
 
               ],
-            );
-          }
+            ),
         ),
-      ),
-    );
+      );
   }
 }
 
