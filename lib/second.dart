@@ -42,7 +42,6 @@ class _SettingsState extends State<Settings> {
         title: (icon!=null) ? Text(text):null,
         contentPadding: const EdgeInsets.all(15),
         tileColor: Colors.grey[850],
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         visualDensity: const VisualDensity(vertical: -4),
         trailing: const Icon(Icons.arrow_forward_ios),);
     }

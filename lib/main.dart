@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tableview_flut/constant.dart';
 import 'package:tableview_flut/second.dart';
+import 'package:tableview_flut/tile.dart';
 void main() {
   runApp(const table_view());
 }
@@ -35,7 +36,6 @@ class _ScreenSetState extends State<ScreenSet> {
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: ListTile(
           tileColor: Colors.grey[850],
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(10),
                 child: Container(
@@ -83,18 +83,18 @@ class _ScreenSetState extends State<ScreenSet> {
                     ),
                   ),
                 ),
-                createTab(
+                createtopTab(
                     Colors.orangeAccent, Icons.airplanemode_active_outlined,
-                    'Airplane Mode'),
+                    'Airplane Mode',),
                 addLine(),
                 createTab(Colors.blueAccent, Icons.wifi, 'Wi-Fi'),
                 addLine(),
                 createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth',),
                 addLine(),
-                createTab(
+                createbotTab(
                     Colors.green, Icons.cell_tower_outlined, 'Mobile Data',),
                 const SizedBox(height: 40,),
-                createTab(Colors.redAccent, Icons.notifications_active,
+                createtopTab(Colors.redAccent, Icons.notifications_active,
                     'Notifications',),
                 addLine(),
                 createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',),
@@ -102,7 +102,7 @@ class _ScreenSetState extends State<ScreenSet> {
                 createTab(
                     const Color(0xB50202BD), Icons.nightlight_round, 'Focus',),
                 addLine(),
-                createTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
+                createbotTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
                     'Screen Time',),
                 const SizedBox(height: 40,),
                 createTab(Colors.grey, Icons.settings, 'General',),
