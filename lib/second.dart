@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:tableview_flut/constant.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -41,9 +40,9 @@ class _SettingsState extends State<Settings> {
         leading: (icon!=null) ? Icon(icon):Text(text),
         title: (icon!=null) ? Text(text):null,
         contentPadding: const EdgeInsets.all(15),
-        tileColor: Colors.grey[850],
+        // tileColor: Colors.grey[850],
         visualDensity: const VisualDensity(vertical: -4),
-        trailing: const Icon(Icons.arrow_forward_ios),);
+        trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,));
     }
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,),
@@ -68,14 +67,27 @@ class _SettingsState extends State<Settings> {
           Text('Satguru Technologies',style: KTextStyle(30.0),textAlign: TextAlign.center,maxLines: 2,),
           const Text('satgurutechnologies12@gmail.com',textAlign: TextAlign.center,),
           const SizedBox(height: 20,),
-          makeTile('Name,Phone Numbers,Email'),
-          addLine(7),
-          makeTile('Password & Security'),
-          addLine(7),
-          makeTile('Payment & Shipping'),
-          addLine(7),
-          makeTile('Subscription'),
+          Card(
+            color: kTileColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: [
+                makeTile('Name,Phone Numbers,Email'),
+                addLine(7),
+                makeTile('Password & Security'),
+                addLine(7),
+                makeTile('Payment & Shipping'),
+                addLine(7),
+                makeTile('Subscription'),
+              ],
+            ),
+          ),
           const SizedBox(height: 40,),
+    Card(
+    color: kTileColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    child: Column(
+    children: [
           makeTile('iCloud',Icons.cloud),
           addLine(45),
           makeTile('Media & Purchases',Icons.media_bluetooth_on),
@@ -83,38 +95,54 @@ class _SettingsState extends State<Settings> {
           makeTile('Find My',Icons.navigation_sharp),
           addLine(45),
           makeTile('Family Sharing',Icons.people_alt_rounded),
+    ],
+    ),
+    ),
           const SizedBox(height: 20,),
           // Some Code to go here
           //think it
           (flag==0) ? ListTile(
-            title: const SpinKitCircle(
-              color: Colors.grey,
-            ),
             tileColor: Colors.grey[850],
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          ) : Column(
-            children: <Widget>[
-              makeTile('iPhone SE 2020',Icons.phone_iphone_outlined),
-              addLine(45),
-              makeTile('apple\'s iphone',Icons.phone_iphone_outlined),
-              addLine(45),
-              makeTile('ipad',Icons.tablet_mac),
-              addLine(45),
-              makeTile('iPad',Icons.tablet_mac),
-              addLine(45),
-              makeTile('Karanpreet\'s MacBook Pro',Icons.laptop_mac),
-              addLine(45),
-              makeTile('Macbook\'s MacBook Pro',Icons.laptop_mac),
-              addLine(45),
-              makeTile('Palak\'s MacBook Pro',Icons.laptop_mac),
-              addLine(45),
-              makeTile('Mridul\'s MacBook Pro',Icons.laptop_mac),
-            ],
+            title: Container(
+              height: 40,
+              width: 10,
+                child: Center(child: CircularProgressIndicator(color: Colors.grey,)))
+          ) : Card(
+            color: kTileColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: <Widget>[
+                makeTile('iPhone SE 2020',Icons.phone_iphone_outlined),
+                addLine(45),
+                makeTile('apple\'s iphone',Icons.phone_iphone_outlined),
+                addLine(45),
+                makeTile('ipad',Icons.tablet_mac),
+                addLine(45),
+                makeTile('iPad',Icons.tablet_mac),
+                addLine(45),
+                makeTile('Karanpreet\'s MacBook Pro',Icons.laptop_mac),
+                addLine(45),
+                makeTile('Macbook\'s MacBook Pro',Icons.laptop_mac),
+                addLine(45),
+                makeTile('Palak\'s MacBook Pro',Icons.laptop_mac),
+                addLine(45),
+                makeTile('Mridul\'s MacBook Pro',Icons.laptop_mac),
+              ],
+            ),
           ),
           const SizedBox(height: 20,),
-          makeTile('Sign Out',Icons.logout),
+          Card(
+              color: kTileColor,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              child: makeTile('Sign Out',Icons.logout)),
     ]
       ),
     );
   }
 }
+// const SpinKitCircle(
+// color: Colors.grey,
+// ),
+// tileColor: Colors.grey[850],
+// shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

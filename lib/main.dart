@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tableview_flut/constant.dart';
 import 'package:tableview_flut/second.dart';
-import 'package:tableview_flut/tile.dart';
 void main() {
   runApp(const table_view());
 }
@@ -46,7 +45,7 @@ class _ScreenSetState extends State<ScreenSet> {
                 ),
               ),
               title: Text(s,style: KTextStyle(18.0),),
-              trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+              trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
           ),
       );
     }
@@ -77,13 +76,19 @@ class _ScreenSetState extends State<ScreenSet> {
                           child: Text('Satguru Technologies',
                             style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
                         ),
-                        const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
-                        const Padding(padding: EdgeInsets.only(left: 15))
+                        const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
+                        const Padding(padding: EdgeInsets.only(left: 25))
                       ],
                     ),
                   ),
                 ),
-                createtopTab(
+      Card(
+        color: kTileColor,
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          children: [
+                createTab(
                     Colors.orangeAccent, Icons.airplanemode_active_outlined,
                     'Airplane Mode',),
                 addLine(),
@@ -91,10 +96,19 @@ class _ScreenSetState extends State<ScreenSet> {
                 addLine(),
                 createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth',),
                 addLine(),
-                createbotTab(
+                createTab(
                     Colors.green, Icons.cell_tower_outlined, 'Mobile Data',),
+          ],
+        ),
+      ),
                 const SizedBox(height: 40,),
-                createtopTab(Colors.redAccent, Icons.notifications_active,
+      Card(
+        color: kTileColor,
+        margin: EdgeInsets.all(10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          children: [
+                createTab(Colors.redAccent, Icons.notifications_active,
                     'Notifications',),
                 addLine(),
                 createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',),
@@ -102,10 +116,17 @@ class _ScreenSetState extends State<ScreenSet> {
                 createTab(
                     const Color(0xB50202BD), Icons.nightlight_round, 'Focus',),
                 addLine(),
-                createbotTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
+                createTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
                     'Screen Time',),
+          ],
+        ),
+      ),
                 const SizedBox(height: 40,),
-                createTab(Colors.grey, Icons.settings, 'General',),
+                Card(
+                    color: kTileColor,
+                    margin: EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    child: createTab(Colors.grey, Icons.settings, 'General')),
 
               ],
             ),
