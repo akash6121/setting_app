@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:tableview_flut/constant.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -9,14 +12,15 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   int flag=0;
-  final Scroll = ScrollController();
-  List<Widget> itemsp = [];
+  final scroll = ScrollController();
+  XFile? imgFile;
+
 
   @override
   void initState(){
     super.initState();
-    Scroll.addListener(() {
-      if(Scroll.position.pixels >= Scroll.position.maxScrollExtent){
+    scroll.addListener(() {
+      if(scroll.position.pixels >= scroll.position.maxScrollExtent){
           Future.delayed(const Duration(seconds: 2), () {
             setState(() {
               flag=1;
@@ -28,38 +32,57 @@ class _SettingsState extends State<Settings> {
   @override
   void dispose(){
     super.dispose();
-    Scroll.dispose();
+    scroll.dispose();
   }
-  @override
-  Widget build(BuildContext context) {
-    Widget addLine(double val){
-      return Divider(height: 0, thickness: 1, endIndent: 10, indent: val,);
+  Future<void> setImage()async{
+    ImagePicker imagePicker =ImagePicker();
+
+      if (await Permission.storage
+          .request()
+          .isGranted) {
+        imgFile = await imagePicker.pickImage(source: ImageSource.gallery);
+        setState(() {
+          //print(imgFile!.path);
+          imgFile;
+        });
     }
-    Widget makeTile(String text,[IconData? icon]){
-      return ListTile(
+  }
+  Widget addLine(double val){
+    return Divider(height: 0, thickness: 1, endIndent: 10, indent: val,);
+  }
+  Widget makeTile(String text,[IconData? icon]){
+    return ListTile(
         leading: (icon!=null) ? Icon(icon):Text(text),
         title: (icon!=null) ? Text(text):null,
         contentPadding: const EdgeInsets.all(15),
         // tileColor: Colors.grey[850],
         visualDensity: const VisualDensity(vertical: -4),
         trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,));
-    }
+  }
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,),
       body: ListView(
-        controller: Scroll,
+        controller: scroll,
         padding: const EdgeInsets.all(15),
         children: <Widget>[
           Align(
           alignment: const FractionalOffset(0.5,0.5),
-          child: CircleAvatar(backgroundImage: const AssetImage('assets/cartoon.jpeg'),radius: 50,
+          child: CircleAvatar(backgroundImage: imgFile == null ? const AssetImage('assets/cartoon.jpeg'):FileImage(File(imgFile!.path)) as ImageProvider,radius: 50,
+             // FileImage(File(imgFile!.path.toString())) as ImageProvider
           child: Align(
             alignment: const FractionalOffset(0.9,0.9),
-            child: Container(
-              height: 15,
-              width: 90,
-              color: Colors.black26,
-              child: const Text('EDIT',textAlign: TextAlign.center,),
+            child: InkWell(
+              onTap: (){
+                setImage();
+              },
+              child: Container(
+                height: 15,
+                width: 90,
+                color: Colors.black26,
+                child: const Text('EDIT',textAlign: TextAlign.center,),
+              ),
             ),
           ),),
         ),
@@ -104,7 +127,7 @@ class _SettingsState extends State<Settings> {
           (flag==0) ? ListTile(
             tileColor: Colors.grey[850],
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            title: Container(
+            title: const SizedBox(
               height: 40,
               width: 10,
                 child: Center(child: CircularProgressIndicator(color: Colors.grey,)))
