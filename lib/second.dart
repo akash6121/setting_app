@@ -91,9 +91,11 @@ class _SettingsState extends State<Settings> {
                       actions: <Widget>[
                         TextButton(onPressed: (){
                           setImage('1');
+                          Navigator.pop(context);
                         }, child: Text('Camera'),),
                         TextButton(onPressed: (){
                           setImage('0');
+                          Navigator.pop(context);
                         }, child: Text('Galery'),),
                       ],
                 ),
