@@ -99,6 +99,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 );
               },
+              //
               child: Container(
                 height: 15,
                 width: 90,
