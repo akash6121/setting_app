@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tableview_flut/constant.dart';
 import 'package:tableview_flut/second.dart';
@@ -30,7 +33,7 @@ class _ScreenSetState extends State<ScreenSet> {
     Widget addLine(){
       return const Divider(height: 0, thickness: 1, endIndent: 20, indent: 80,);
     }
-    Widget createTab(Color colour, IconData icon, String s){
+    Widget createTab(Color colour, IconData icon, String s,String place){
       return Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: ListTile(
@@ -44,7 +47,13 @@ class _ScreenSetState extends State<ScreenSet> {
                   child: Icon(icon),
                 ),
               ),
-              title: Text(s,style: KTextStyle(18.0),),
+              title: Row(
+                children: [
+                  Text(s,style: KTextStyle(18.0),),
+                  Spacer(),
+                  Text(place,style: TextStyle(color: Colors.grey[400]),),
+                ],
+              ),
               trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
           ),
       );
@@ -73,8 +82,15 @@ class _ScreenSetState extends State<ScreenSet> {
                             'assets/cartoon.jpeg'), radius: 35,),
                         SizedBox(width: 15,),
                         Expanded(
-                          child: Text('Satguru Technologies',
-                            style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Satguru Technologies',
+                                style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                              Text('Apple ID,iCloud,Media & Purchases',
+                                style:  KTextStyle(15.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                            ],
+                          ),
                         ),
                         const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
                         const Padding(padding: EdgeInsets.only(left: 25))
@@ -88,16 +104,37 @@ class _ScreenSetState extends State<ScreenSet> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: ListTile(
+                tileColor: Colors.grey[850],
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    height: 37,
+                    width: 37,
+                    color: Colors.orangeAccent,
+                    child: Transform.rotate(
+                    angle: 90*pi/180,
+                    child: Icon(Icons.airplanemode_active_outlined)),
+                  ),
+                ),
+                title: Text('Airplane Mode',style: KTextStyle(18.0),),
+                trailing: CupertinoSwitch(activeColor: Colors.green,onChanged: (val){
+
+                },value: true,),
+              ),
+            ),
+                // createTab(
+                //     Colors.orangeAccent, Icons.airplanemode_active_outlined,
+                //     'Airplane Mode',),
+                addLine(),
+                createTab(Colors.blueAccent, Icons.wifi, 'Wi-Fi','Phoenix'),
+                addLine(),
+                createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth','Off'),
+                addLine(),
                 createTab(
-                    Colors.orangeAccent, Icons.airplanemode_active_outlined,
-                    'Airplane Mode',),
-                addLine(),
-                createTab(Colors.blueAccent, Icons.wifi, 'Wi-Fi'),
-                addLine(),
-                createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth',),
-                addLine(),
-                createTab(
-                    Colors.green, Icons.cell_tower_outlined, 'Mobile Data',),
+                    Colors.green, Icons.cell_tower_outlined, 'Mobile Data','Airplane Mode'),
           ],
         ),
       ),
@@ -109,15 +146,15 @@ class _ScreenSetState extends State<ScreenSet> {
         child: Column(
           children: [
                 createTab(Colors.redAccent, Icons.notifications_active,
-                    'Notifications',),
+                    'Notifications',''),
                 addLine(),
-                createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',),
+                createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',''),
                 addLine(),
                 createTab(
-                    const Color(0xB50202BD), Icons.nightlight_round, 'Focus',),
+                    const Color(0xB50202BD), Icons.nightlight_round, 'Focus',''),
                 addLine(),
                 createTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
-                    'Screen Time',),
+                    'Screen Time',''),
           ],
         ),
       ),
@@ -126,7 +163,7 @@ class _ScreenSetState extends State<ScreenSet> {
                     color: kTileColor,
                     margin: EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    child: createTab(Colors.grey, Icons.settings, 'General')),
+                    child: createTab(Colors.grey, Icons.settings, 'General','')),
 
               ],
             ),
