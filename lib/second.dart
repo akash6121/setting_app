@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tableview_flut/constant.dart';
+import 'package:tableview_flut/preferences.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -19,6 +20,11 @@ class _SettingsState extends State<Settings> {
   @override
   void initState(){
     super.initState();
+    Future.delayed(Duration.zero,()async
+    {
+      await UserPreferences.init();
+      //imgFile?.path=await UserPreferences.getval();
+    });
     scroll.addListener(() {
       if(scroll.position.pixels >= scroll.position.maxScrollExtent){
           Future.delayed(const Duration(seconds: 2), () {
@@ -42,8 +48,10 @@ class _SettingsState extends State<Settings> {
           .isGranted) {
         imgFile = await imagePicker.pickImage(source: ImageSource.gallery);
         setState(() {
-          //print(imgFile!.path);
           imgFile;
+           // Future.delayed(Duration.zero,()async{
+           //   await UserPreferences.setval(imgFile!.path);
+           // });
         });
     }
   }
