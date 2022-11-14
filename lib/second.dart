@@ -40,13 +40,13 @@ class _SettingsState extends State<Settings> {
     super.dispose();
     scroll.dispose();
   }
-  Future<void> setImage()async{
+  Future<void> setImage(String val)async{
     ImagePicker imagePicker =ImagePicker();
 
       if (await Permission.storage
           .request()
           .isGranted) {
-        imgFile = await imagePicker.pickImage(source: ImageSource.gallery);
+        imgFile = await imagePicker.pickImage(source: (val=='1')?ImageSource.camera:ImageSource.gallery);
         setState(() {
           imgFile;
            // Future.delayed(Duration.zero,()async{
@@ -83,7 +83,21 @@ class _SettingsState extends State<Settings> {
             alignment: const FractionalOffset(0.9,0.9),
             child: InkWell(
               onTap: (){
-                setImage();
+               //setImage();
+                showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                    title: const Text("CHOOSE FROM"),
+                      actions: <Widget>[
+                        TextButton(onPressed: (){
+                          setImage('1');
+                        }, child: Text('Camera'),),
+                        TextButton(onPressed: (){
+                          setImage('0');
+                        }, child: Text('Galery'),),
+                      ],
+                ),
+                );
               },
               child: Container(
                 height: 15,

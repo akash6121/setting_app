@@ -68,10 +68,10 @@ class _ScreenSetState extends State<ScreenSet> {
                         borderRadius: BorderRadius.circular(10)),
                     child: Row(
                       children: <Widget>[
-                        const Padding(padding: EdgeInsets.only(left: 15)),
+                        SizedBox(width: 15,),
                         const CircleAvatar(backgroundImage: AssetImage(
                             'assets/cartoon.jpeg'), radius: 35,),
-                        const Padding(padding: EdgeInsets.all(15)),
+                        SizedBox(width: 15,),
                         Expanded(
                           child: Text('Satguru Technologies',
                             style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
