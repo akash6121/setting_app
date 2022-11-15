@@ -93,14 +93,13 @@ class _SettingsState extends State<Settings> {
             child: InkWell(
               onTap: (){
                //setImage();
-                showDialog(context: context, builder: (ctx) => CupertinoAlertDialog(
-                  title: const Text("Pick Image from"),
-                    actions: <CupertinoDialogAction>[
-                      CupertinoDialogAction(child: const Text('Camera'),onPressed: (){
+                showCupertinoModalPopup(context: context, builder: (ctx) => CupertinoActionSheet(
+                    actions: <CupertinoActionSheetAction>[
+                      CupertinoActionSheetAction(child: const Text('Take Photo'),onPressed: (){
                         setImage('1');
                         Navigator.pop(context);
                       },),
-                      CupertinoDialogAction(child: const Text('Gallery'),onPressed: (){
+                      CupertinoActionSheetAction(child: const Text('Choose Photo'),onPressed: (){
                         setImage('0');
                         Navigator.pop(context);
                       },),
