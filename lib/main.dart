@@ -28,6 +28,7 @@ class ScreenSet extends StatefulWidget {
 }
 
 class _ScreenSetState extends State<ScreenSet> {
+  bool sign=true;
   @override
   Widget build(BuildContext context) {
     Widget addLine(){
@@ -80,7 +81,6 @@ class _ScreenSetState extends State<ScreenSet> {
         child: Column(
           children: [
             ListTile(
-              tileColor: Colors.grey[850],
               leading: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
@@ -92,8 +92,10 @@ class _ScreenSetState extends State<ScreenSet> {
               ),
               title: Text('Airplane Mode',style: KTextStyle(18.0),),
               trailing: CupertinoSwitch(activeColor: Colors.green,onChanged: (val){
-
-              },value: true,),
+                setState(() {
+                  sign=!sign;
+                });
+              },value: sign,),
             ),
                 // createTab(
                 //     Colors.orangeAccent, Icons.airplanemode_active_outlined,
@@ -104,7 +106,7 @@ class _ScreenSetState extends State<ScreenSet> {
                 createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth','Off'),
                 addLine(),
                 createTab(
-                    Colors.green, CupertinoIcons.antenna_radiowaves_left_right, 'Mobile Data','Airplane Mode'),
+                    Colors.green, CupertinoIcons.antenna_radiowaves_left_right, 'Mobile Data',(sign==true)?'Airplane Mode':'JIO 4G'),
           ],
         ),
       ),

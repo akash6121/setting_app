@@ -72,7 +72,14 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,),
+      appBar: AppBar(leading: IconButton(onPressed: (){
+        Navigator.maybePop(context);
+      },icon: Icon(CupertinoIcons.back),
+        color: Colors.blueAccent,
+      ),
+        backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,
+        elevation: 0,
+      ),
       body: ListView(
         controller: scroll,
         padding: const EdgeInsets.all(15),
@@ -94,11 +101,11 @@ class _SettingsState extends State<Settings> {
                         TextButton(onPressed: (){
                           setImage('1');
                           Navigator.pop(context);
-                        }, child: Text('Camera'),),
+                        }, child: const Text('Camera'),),
                         TextButton(onPressed: (){
                           setImage('0');
                           Navigator.pop(context);
-                        }, child: Text('Galery'),),
+                        }, child: const Text('Galery'),),
                       ],
                 ),
                 );
@@ -140,13 +147,13 @@ class _SettingsState extends State<Settings> {
       mainAxisAlignment: MainAxisAlignment.start,
     children: [
       createTab(Colors.lightBlueAccent, CupertinoIcons.cloud_fill, 'iCloud','5GB'),
-          addLine(45),
+          addLine(65),
       createTab(Colors.lightBlueAccent.shade700, CupertinoIcons.double_music_note, 'Media & Purchases',''),
           //makeTile('Media & Purchases',CupertinoIcons.double_music_note),
-          addLine(45),
+          addLine(65),
       createTab(Colors.redAccent, Icons.navigation_sharp, 'Find My',''),
           //makeTile('Find My',Icons.navigation_sharp),
-          addLine(45),
+          addLine(65),
       createTab(Colors.lightGreen, CupertinoIcons.person_2_fill, 'Find My','Learn more...'),
           //makeTile('Family Sharing',CupertinoIcons.person_2_fill),
     ],
@@ -167,21 +174,21 @@ class _SettingsState extends State<Settings> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: <Widget>[
-                makeTile('iPhone SE 2020',Icons.phone_iphone_outlined),
-                addLine(45),
-                makeTile('apple\'s iphone',Icons.phone_iphone_outlined),
-                addLine(45),
-                makeTile('ipad',Icons.tablet_mac),
-                addLine(45),
-                makeTile('iPad',Icons.tablet_mac),
-                addLine(45),
-                makeTile('Karanpreet\'s MacBook Pro',Icons.laptop_mac),
-                addLine(45),
-                makeTile('Macbook\'s MacBook Pro',Icons.laptop_mac),
-                addLine(45),
-                makeTile('Palak\'s MacBook Pro',Icons.laptop_mac),
-                addLine(45),
-                makeTile('Mridul\'s MacBook Pro',Icons.laptop_mac),
+                createimag('assets/iphone.jpeg', 'iPhone SE 2020', 'This iPhone SE'),
+                addLine(65),
+                createimag('assets/iphone6s.webp', 'apple\'s iphone', 'iPhone 6s'),
+                addLine(65),
+                createimag('assets/ipad.png', 'iPad', 'iPad'),
+                addLine(65),
+                createimag('assets/Ipad.jpeg', 'iPad', 'iPad'),
+                addLine(65),
+                createimag('assets/macpro.jpeg', 'Karanpreet\'s MacBook Pro', 'MacBook Pro 13"'),
+                addLine(65),
+                createimag('assets/macpro.jpeg', 'Macbook\'s MacBook Pro', 'MacBook Pro 15"'),
+                addLine(65),
+                createimag('assets/macpro.jpeg', 'Palak\'s MacBook Pro', 'MacBook Pro 16"'),
+                addLine(65),
+                createimag('assets/macpro.jpeg', 'Mridul\'s MacBook Pro', 'MacBook Pro 13"'),
               ],
             ),
           ),
@@ -189,7 +196,10 @@ class _SettingsState extends State<Settings> {
           Card(
               color: kTileColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              child: makeTile('Sign Out',Icons.logout)),
+              child: const ListTile(
+                title: Text('Sign Out',style: TextStyle(color: Colors.red),textAlign: TextAlign.center,),
+              ),
+          ),
     ]
       ),
     );
