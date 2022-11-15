@@ -38,9 +38,8 @@ class _ScreenSetState extends State<ScreenSet> {
       body: SafeArea(
         child: ListView(
               children: <Widget>[
-                const Padding(padding: EdgeInsets.only(top: 50)),
-                Text('Settings', style: KTextStyle(60.0),),
-                const SizedBox(height: 20,),
+                SizedBox(height: 20,),
+                Text('Settings', style: KTextStyle(40.0),),
                 InkWell(
                   onTap: () {
                     Navigator.push(context,
@@ -69,7 +68,7 @@ class _ScreenSetState extends State<ScreenSet> {
                           ),
                         ),
                         const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
-                        const Padding(padding: EdgeInsets.only(left: 25))
+                        const Padding(padding: EdgeInsets.only(left: 15))
                       ],
                     ),
                   ),
