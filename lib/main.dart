@@ -39,7 +39,10 @@ class _ScreenSetState extends State<ScreenSet> {
         child: ListView(
               children: <Widget>[
                 SizedBox(height: 20,),
-                Text('Settings', style: KTextStyle(40.0),),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 0, 0, 5),
+                  child: Text('Settings', style: KTextStyle(40.0),),
+                ),
                 InkWell(
                   onTap: () {
                     Navigator.push(context,

@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       appBar: AppBar(leading: IconButton(onPressed: (){
         Navigator.maybePop(context);
-      },icon: const Icon(CupertinoIcons.back),
+      },icon: const Icon(CupertinoIcons.back,size: 35,),
         color: Colors.blueAccent,
       ),
         backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,
