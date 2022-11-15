@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       appBar: AppBar(leading: IconButton(onPressed: (){
         Navigator.maybePop(context);
-      },icon: Icon(CupertinoIcons.back),
+      },icon: const Icon(CupertinoIcons.back),
         color: Colors.blueAccent,
       ),
         backgroundColor: const Color(0xFF212121),title: const Text('Apple ID'),centerTitle: true,
@@ -93,22 +93,19 @@ class _SettingsState extends State<Settings> {
             child: InkWell(
               onTap: (){
                //setImage();
-                showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                    title: const Text("CHOOSE FROM"),
-                      actions: <Widget>[
-                        TextButton(onPressed: (){
-                          setImage('1');
-                          Navigator.pop(context);
-                        }, child: const Text('Camera'),),
-                        TextButton(onPressed: (){
-                          setImage('0');
-                          Navigator.pop(context);
-                        }, child: const Text('Galery'),),
-                      ],
-                ),
-                );
+                showDialog(context: context, builder: (ctx) => CupertinoAlertDialog(
+                  title: const Text("Pick Image from"),
+                    actions: <CupertinoDialogAction>[
+                      CupertinoDialogAction(child: const Text('Camera'),onPressed: (){
+                        setImage('1');
+                        Navigator.pop(context);
+                      },),
+                      CupertinoDialogAction(child: const Text('Gallery'),onPressed: (){
+                        setImage('0');
+                        Navigator.pop(context);
+                      },),
+                    ],
+                ));
               },
               //
               child: Container(
@@ -168,7 +165,7 @@ class _SettingsState extends State<Settings> {
             title: const SizedBox(
               height: 40,
               width: 10,
-                child: Center(child: CircularProgressIndicator(color: Colors.grey,)))
+                child: Center(child: CupertinoActivityIndicator()))
           ) : Card(
             color: kTileColor,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
