@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tableview_flut/constant.dart';
 import 'package:tableview_flut/preferences.dart';
+import 'package:tableview_flut/createtab.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -135,14 +137,18 @@ class _SettingsState extends State<Settings> {
     color: kTileColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
     children: [
-          makeTile('iCloud',Icons.cloud),
+      createTab(Colors.lightBlueAccent, CupertinoIcons.cloud_fill, 'iCloud','5GB'),
           addLine(45),
-          makeTile('Media & Purchases',Icons.media_bluetooth_on),
+      createTab(Colors.lightBlueAccent.shade700, CupertinoIcons.double_music_note, 'Media & Purchases',''),
+          //makeTile('Media & Purchases',CupertinoIcons.double_music_note),
           addLine(45),
-          makeTile('Find My',Icons.navigation_sharp),
+      createTab(Colors.redAccent, Icons.navigation_sharp, 'Find My',''),
+          //makeTile('Find My',Icons.navigation_sharp),
           addLine(45),
-          makeTile('Family Sharing',Icons.people_alt_rounded),
+      createTab(Colors.lightGreen, CupertinoIcons.person_2_fill, 'Find My','Learn more...'),
+          //makeTile('Family Sharing',CupertinoIcons.person_2_fill),
     ],
     ),
     ),

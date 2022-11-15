@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:tableview_flut/createtab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tableview_flut/constant.dart';
@@ -32,31 +32,6 @@ class _ScreenSetState extends State<ScreenSet> {
   Widget build(BuildContext context) {
     Widget addLine(){
       return const Divider(height: 0, thickness: 1, endIndent: 20, indent: 80,);
-    }
-    Widget createTab(Color colour, IconData icon, String s,String place){
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-        child: ListTile(
-          tileColor: Colors.grey[850],
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  height: 37,
-                  width: 37,
-                  color: colour,
-                  child: Icon(icon),
-                ),
-              ),
-              title: Row(
-                children: [
-                  Text(s,style: KTextStyle(18.0),),
-                  Spacer(),
-                  Text(place,style: TextStyle(color: Colors.grey[400]),),
-                ],
-              ),
-              trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
-          ),
-      );
     }
     return Scaffold(
       body: SafeArea(
@@ -104,26 +79,21 @@ class _ScreenSetState extends State<ScreenSet> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ListTile(
-                tileColor: Colors.grey[850],
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    height: 37,
-                    width: 37,
-                    color: Colors.orangeAccent,
-                    child: Transform.rotate(
-                    angle: 90*pi/180,
-                    child: Icon(Icons.airplanemode_active_outlined)),
-                  ),
+            ListTile(
+              tileColor: Colors.grey[850],
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: 37,
+                  width: 37,
+                  color: Colors.orangeAccent,
+                  child: Icon(CupertinoIcons.airplane),
                 ),
-                title: Text('Airplane Mode',style: KTextStyle(18.0),),
-                trailing: CupertinoSwitch(activeColor: Colors.green,onChanged: (val){
-
-                },value: true,),
               ),
+              title: Text('Airplane Mode',style: KTextStyle(18.0),),
+              trailing: CupertinoSwitch(activeColor: Colors.green,onChanged: (val){
+
+              },value: true,),
             ),
                 // createTab(
                 //     Colors.orangeAccent, Icons.airplanemode_active_outlined,
@@ -134,7 +104,7 @@ class _ScreenSetState extends State<ScreenSet> {
                 createTab(Colors.blueAccent, Icons.bluetooth, 'Bluetooth','Off'),
                 addLine(),
                 createTab(
-                    Colors.green, Icons.cell_tower_outlined, 'Mobile Data','Airplane Mode'),
+                    Colors.green, CupertinoIcons.antenna_radiowaves_left_right, 'Mobile Data','Airplane Mode'),
           ],
         ),
       ),
@@ -145,15 +115,15 @@ class _ScreenSetState extends State<ScreenSet> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Column(
           children: [
-                createTab(Colors.redAccent, Icons.notifications_active,
+                createTab(Colors.redAccent, CupertinoIcons.bell_solid,
                     'Notifications',''),
                 addLine(),
-                createTab(Colors.red, Icons.volume_up, 'Sounds & Haptics',''),
+                createTab(Colors.red, CupertinoIcons.volume_up, 'Sounds & Haptics',''),
                 addLine(),
                 createTab(
-                    const Color(0xB50202BD), Icons.nightlight_round, 'Focus',''),
+                    const Color(0x3E5A38E8), CupertinoIcons.moon_fill, 'Focus',''),
                 addLine(),
-                createTab(const Color(0xB50202BD), Icons.hourglass_bottom_rounded,
+                createTab(const Color(0xB50202BD), CupertinoIcons.hourglass,
                     'Screen Time',''),
           ],
         ),
@@ -163,7 +133,7 @@ class _ScreenSetState extends State<ScreenSet> {
                     color: kTileColor,
                     margin: EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    child: createTab(Colors.grey, Icons.settings, 'General','')),
+                    child: createTab(Colors.grey, CupertinoIcons.settings, 'General','')),
 
               ],
             ),
