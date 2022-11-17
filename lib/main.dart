@@ -35,6 +35,7 @@ class _ScreenSetState extends State<ScreenSet> {
       return const Divider(height: 0, thickness: 1, endIndent: 20, indent: 80,);
     }
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: ListView(
               children: <Widget>[
@@ -43,37 +44,40 @@ class _ScreenSetState extends State<ScreenSet> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 0, 5),
                   child: Text('Settings', style: KTextStyle(40.0),),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Settings()),);
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 40),
-                    height: 90,
-                    decoration: BoxDecoration(color: Colors.grey[850],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 15,),
-                        const CircleAvatar(backgroundImage: AssetImage(
-                            'assets/cartoon.jpeg'), radius: 35,),
-                        SizedBox(width: 15,),
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Satguru Technologies',
-                                style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
-                              Text('Apple ID,iCloud,Media & Purchases',
-                                style:  KTextStyle(15.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
-                            ],
-                          ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(10, 10, 10, 40),
+                  height: 90,
+                  decoration: BoxDecoration(color: Colors.grey[850],
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(width: 15,),
+                      const CircleAvatar(backgroundImage: AssetImage(
+                          'assets/cartoon.jpeg'), radius: 35,),
+                      SizedBox(width: 15,),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const Settings()),);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Satguru Technologies',
+                              style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                            Container(
+                              width: 200,
+                              child: Text('Apple ID,iCloud,Media & Purchases',
+                                style:  KTextStyle(17.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
+                            ),
+                          ],
                         ),
-                        const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
-                        const Padding(padding: EdgeInsets.only(left: 15))
-                      ],
-                    ),
+                      ),
+                      Spacer(),
+                      const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,),
+                      const Padding(padding: EdgeInsets.only(left: 15))
+                    ],
                   ),
                 ),
       Card(

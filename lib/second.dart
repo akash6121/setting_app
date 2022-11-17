@@ -64,7 +64,7 @@ class _SettingsState extends State<Settings> {
     return ListTile(
         leading: (icon!=null) ? Icon(icon):Text(text),
         title: (icon!=null) ? Text(text):null,
-        contentPadding: const EdgeInsets.all(15),
+        contentPadding: const EdgeInsets.all(8),
         // tileColor: Colors.grey[850],
         visualDensity: const VisualDensity(vertical: -4),
         trailing: const Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 17,));
@@ -135,7 +135,7 @@ class _SettingsState extends State<Settings> {
               ],
             ),
           ),
-          const SizedBox(height: 40,),
+          const SizedBox(height: 30,),
     Card(
     color: kTileColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -155,7 +155,7 @@ class _SettingsState extends State<Settings> {
     ],
     ),
     ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 30,),
           // Some Code to go here
           //think it
           (flag==0) ? ListTile(
