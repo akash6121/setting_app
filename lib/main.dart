@@ -54,6 +54,7 @@ class _ScreenSetState extends State<ScreenSet> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     margin: EdgeInsets.all(10),
                     child: ListTile(
+                      minVerticalPadding: 0,
                       leading: CircleAvatar(backgroundImage: AssetImage('assets/cartoon.jpeg'), radius: 35,),
                       title: Text('Satguru Technologies',
                         style:  KTextStyle(22.0),overflow: TextOverflow.ellipsis,maxLines: 2,),
